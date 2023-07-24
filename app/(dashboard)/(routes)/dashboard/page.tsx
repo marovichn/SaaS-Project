@@ -46,12 +46,12 @@ const tools = [
 
 const page: FC<pageProps> = ({}) => {
   return (
-    <div>
+    <div className="mb-10">
       <div className='mb-8 space-y-4'>
-        <h2 className='text-2xl md:text-4xl font-bold text-center'>
-          Explore the power of AI Brain Pulse
+        <h2 className='text-5xl md:text-4xl font-bold text-center mt-8 px-5'>
+          Explore the power of AI's Brain Pulse
         </h2>
-        <p className='text-muted-foreground font-light text-sm md:text-lg text-center'>
+        <p className='text-muted-foreground font-light text-sm md:text-lg text-center px-12 py-6'>
           Discover a new realm of productivity as BrainPulse seamlessly
           integrates AI with your cognitive processes, empowering you to unlock
           your true mental prowess. Our intuitive and user-friendly interface
@@ -59,7 +59,7 @@ const page: FC<pageProps> = ({}) => {
           thoughts, transforming them into actionable insights.
         </p>
       </div>
-      <div className='px-4 md:px-20 lg.px-32 space-y-4'>
+      <div className='px-4 md:px-20 lg.px-32 space-y-4 min-[0px]:max-md:pb-10'>
         {tools.map((tool) => (
           <Card key={tool.href}>
             <Link

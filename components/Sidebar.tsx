@@ -83,14 +83,14 @@ const Sidebar: FC<SidebarProps> = ({}) => {
             />
           </div>
         </Link>
-        <div className='space-y-1 -mt-8'>
+        <div className='space-y-3 -mt-8'>
           {routes.map((route) => {
             if (route.label === "Settings") {
               return (
                 <Link
                   href={route.href}
                   key={route.href}
-                  className='text-sm group flex p-3 w-full justify-start font-medium cursor-pointer border border-transparent  hover:bg-white/10 hover:border hover:border-white hover:shadow-sm  hover:shadow-white rounded-lg transition'
+                  className='flex text-sm group p-3 w-full justify-start font-medium cursor-pointer border border-transparent  hover:bg-white/10 hover:border hover:border-white hover:shadow-sm  hover:shadow-slate-100/60 rounded-lg transition'
                 >
                   <div className='flex items-center flex-1 p-2'>
                     <route.icon
@@ -109,9 +109,9 @@ const Sidebar: FC<SidebarProps> = ({}) => {
                   href={route.href}
                   key={route.href}
                   className={cn(
-                    "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer border border-transparent hover:bg-white/10 hover:border hover:border-white hover:shadow-sm hover:shadow-white rounded-lg transition",
+                    "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer border border-transparent hover:bg-white/10 hover:border hover:border-white hover:shadow-sm hover:shadow-slate-100/60 rounded-lg transition",
                     pathname === route.href
-                      ? "bg-white/10 border border-white shadow-sm shadow-white"
+                      ? "bg-white/10 border border-white shadow-sm shadow-slate-100/60"
                       : "text-white"
                   )}
                 >

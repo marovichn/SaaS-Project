@@ -8,7 +8,7 @@ interface NavbarProps {}
 
 const Navbar: FC<NavbarProps> = ({}) => {
   return (
-    <div className='flex items-center p-4'>
+    <div className='flex items-center p-4 mb-2'>
       <MobileSidebar/>
       <div className="w-full flex justify-end">
         <UserButton afterSignOutUrl="/"/>
