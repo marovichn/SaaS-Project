@@ -8,7 +8,7 @@ export default function Home() {
         className='p-10 text-5xl text-purple-500 border-purple-500 hover:border-slate-200'
         variant='outline'
       >
-        Hiii
+        Landing Page(Unprotected)
       </Button>
     </p>
   );
