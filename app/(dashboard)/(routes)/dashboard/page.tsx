@@ -15,7 +15,6 @@ const page: FC<pageProps> = ({}) => {
       >
         Dashboard [protected]
       </Button>
-      <UserButton afterSignOutUrl='/'/>
     </div>
   );
 }

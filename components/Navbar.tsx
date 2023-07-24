@@ -3,6 +3,7 @@
 import { FC } from "react";
 import { Button } from "./ui/button";
 import { Menu } from "lucide-react";
+import { UserButton } from '@clerk/nextjs'
 
 interface NavbarProps {}
 
@@ -12,6 +13,9 @@ const Navbar: FC<NavbarProps> = ({}) => {
       <Button variant="ghost"  className="md:hidden" onClick={()=>{}}>
         <Menu/>
       </Button>
+      <div className="w-full flex justify-end">
+        <UserButton afterSignOutUrl="/"/>
+      </div>
     </div>
   );
 };
