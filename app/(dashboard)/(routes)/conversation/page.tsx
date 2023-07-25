@@ -14,6 +14,11 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { ChatCompletionRequestMessage } from "openai";
 import Empty from "@/components/Empty";
+import Loader from "@/components/Loader";
+import { cn } from "@/lib/utils";
+import UserAvatar from "@/components/UserAvatar";
+import BotAvatar from "@/components/BotAvatar";
+import { measureMemory } from "vm";
 
 const ConversationPage = () => {
   const router = useRouter();
@@ -35,7 +40,7 @@ const ConversationPage = () => {
         role: "user",
         content: values.prompt,
       };
-      const newMessages = [...messages, userMessage];
+      const newMessages = [userMessage, ...messages];
 
       const res = await axios.post("/api/conversation", {
         messages: newMessages,
@@ -45,7 +50,7 @@ const ConversationPage = () => {
 
       form.reset();
     } catch (err) {
-      //TODO:open PRO modal
+      //TODO:open PREMIUM modal
     } finally {
       router.refresh();
     }
@@ -103,11 +108,29 @@ const ConversationPage = () => {
           </Form>
         </div>
         <div className='space-y-4 mt-4'>
-          {messages.length === 0 && !isLoading && <Empty label="Try generating a prompt"/>}
-          <div className='flex flex-col-reverse gap-y-4'>
-            {messages.map((message)=>(<div key={message.content}>
-              {message.content}
-            </div>))}
+          {isLoading && (
+            <div className='h-full w-full flex flex-col items-center justify-center'>
+              <Loader />
+            </div>
+          )}
+          {messages.length === 0 && !isLoading && (
+            <Empty label='Try generating a prompt' />
+          )}
+          <div className='flex flex-col-reverse gap-y-4 mb-10'>
+            {messages.map((message) => (
+              <div
+                key={message.content}
+                className={cn(
+                  "p-8 w-full flex items-start gap-x-8 rounded-lg",
+                  message.role === "user"
+                    ? "bg-white border border-black/10"
+                    : "bg-muted"
+                )}
+              >
+                {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                <p className="text-md">{message.content}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

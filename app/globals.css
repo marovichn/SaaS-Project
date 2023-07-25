@@ -4,6 +4,9 @@
 
 html,body, :root{
   height: 100%;
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
  
 @layer base {
@@ -79,4 +82,40 @@ html,body, :root{
   body {
     @apply bg-background text-foreground;
   }
+}
+.scene{
+    overflow: hidden;
+    perspective: 10vmin;
+}
+
+.scene div{
+    width: 1.5vmin;
+    height: 1.5vmin;
+    transform: 
+    translateZ(-100vmin)
+    rotateY(90deg)
+    rotateX(var(--rx))
+    translateZ(var(--x))
+    scaleX(1);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    animation:  animate 1.5s infinite ease-in;
+    background: #fff;
+    box-shadow: 0 0 20px rgb(10, 239, 255);
+}
+
+@keyframes animate {
+    0%, 90%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+        transform: 
+        translateZ(0vmin)
+        rotateY(90deg)
+        rotateX(var(--rx))
+        translateZ(var(--x))
+        scaleX(6);
+    }
 }
