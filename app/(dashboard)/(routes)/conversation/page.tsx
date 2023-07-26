@@ -109,7 +109,7 @@ const ConversationPage = () => {
         </div>
         <div className='space-y-4 mt-4'>
           {isLoading && (
-            <div className='h-full w-full flex flex-col items-center justify-center'>
+            <div className='h-full w-full flex flex-col items-center justify-center mb-8'>
               <Loader />
             </div>
           )}
