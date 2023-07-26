@@ -54,7 +54,7 @@ const page: FC<pageProps> = ({}) => {
         <p className='text-muted-foreground font-light text-sm md:text-lg text-center px-12 py-6'>
           Discover a new realm of productivity as BrainPulse seamlessly
           integrates AI with your cognitive processes, empowering you to unlock
-          your true mental prowess. Our intuitive and user-friendly interface
+          your true mental prowers. Our intuitive and user-friendly interface
           allows you to effortlessly capture, organize, and explore your
           thoughts, transforming them into actionable insights.
         </p>
