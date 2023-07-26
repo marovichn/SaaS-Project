@@ -7,7 +7,7 @@ interface EmptyProps {
 
 const Empty: FC<EmptyProps> = ({ label }) => {
 var tmp = [];
-for (var i = 0; i < 60; i++) {
+for (var i = 0; i < 50; i++) {
   tmp.push(i);
 }
 var indents = tmp.map(function (i) {
@@ -25,10 +25,6 @@ var indents = tmp.map(function (i) {
   };
 
   return <div key={x} style={style}></div>;
-});
-const stars = document.querySelectorAll("div");
-stars.forEach((star) => {
-  
 });
 
   return (
