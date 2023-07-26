@@ -19,8 +19,10 @@ import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/UserAvatar";
 import BotAvatar from "@/components/BotAvatar";
 import ReactMarkdown from "react-markdown";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const CodeGenerationPage = () => {
+  const proModal = useProModal();
   const router = useRouter();
 
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
@@ -49,8 +51,10 @@ const CodeGenerationPage = () => {
       setMessages((current) => [...current, userMessage, res.data]);
 
       form.reset();
-    } catch (err) {
-      //TODO:open PREMIUM modal
+    } catch (err: any) {
+      if(err.response?.status === 403){
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }

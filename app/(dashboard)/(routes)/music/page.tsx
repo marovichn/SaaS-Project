@@ -12,12 +12,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { ChatCompletionRequestMessage } from "openai";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const MusicPage = () => {
   const router = useRouter();
+  const proModal = useProModal();
 
   const [music, setMusic] = useState<string>();
 
@@ -38,8 +39,10 @@ const MusicPage = () => {
 
       setMusic(res.data.audio);
       form.reset();
-    } catch (err) {
-      //TODO:open PREMIUM modal
+    } catch (err: any) {
+       if (err.response?.status === 403) {
+         proModal.onOpen();
+       }
     } finally {
       router.refresh();
     }

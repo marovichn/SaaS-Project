@@ -18,10 +18,11 @@ import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/UserAvatar";
 import BotAvatar from "@/components/BotAvatar";
-import { measureMemory } from "vm";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 const ConversationPage = () => {
   const router = useRouter();
+  const proModal = useProModal();
 
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
@@ -49,8 +50,11 @@ const ConversationPage = () => {
       setMessages((current) => [...current, userMessage, res.data]);
 
       form.reset();
-    } catch (err) {
-      //TODO:open PREMIUM modal
+    } catch (err:any) {
+      
+      if (err.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
