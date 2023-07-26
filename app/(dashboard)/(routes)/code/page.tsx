@@ -2,7 +2,7 @@
 
 import Heading from "@/components/Heading";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Divide, MessageSquareIcon } from "lucide-react";
+import { Code } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -18,9 +18,9 @@ import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/UserAvatar";
 import BotAvatar from "@/components/BotAvatar";
-import { measureMemory } from "vm";
+import ReactMarkdown from "react-markdown";
 
-const ConversationPage = () => {
+const CodeGenerationPage = () => {
   const router = useRouter();
 
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
@@ -42,7 +42,7 @@ const ConversationPage = () => {
       };
       const newMessages = [userMessage, ...messages];
 
-      const res = await axios.post("/api/conversation", {
+      const res = await axios.post("/api/code", {
         messages: newMessages,
       });
 
@@ -59,11 +59,11 @@ const ConversationPage = () => {
   return (
     <div>
       <Heading
-        title='Conversation'
-        description='Our most advanced conversation model'
-        Icon={MessageSquareIcon}
-        iconColor='text-violet-500'
-        bgColor='bg-violet-500/10'
+        title='Code Generation'
+        description='Our most advanced code generation model'
+        Icon={Code}
+        iconColor='text-green-700'
+        bgColor='bg-green-700/10'
       />
       <div className='px-4 lg:px-8'>
         <div>
@@ -91,7 +91,7 @@ const ConversationPage = () => {
                       <Input
                         className='border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent'
                         disabled={isLoading}
-                        placeholder='How do I calculate the radius of a circle?'
+                        placeholder='Generate me code in React for a simple landing page.'
                         {...field}
                       />
                     </FormControl>
@@ -128,7 +128,21 @@ const ConversationPage = () => {
                 )}
               >
                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
-                <p className="text-md">{message.content}</p>
+                <ReactMarkdown
+                  components={{
+                    pre: ({ node, ...props }) => (
+                      <div className='overflow-auto w-full my-4 bg-green-700/20 text-green-900 font-bold p-2 rounded-lg'>
+                        <pre {...props} />
+                      </div>
+                    ),
+                    code: ({ node, ...props }) => (
+                      <code className='bg-green-700/20 rounded-lg p-1' {...props} />
+                    ),
+                  }}
+                  className="text-sm overflow-hidden leading-7"
+                >
+                  {message.content || ""}
+                </ReactMarkdown>
               </div>
             ))}
           </div>
@@ -138,4 +152,4 @@ const ConversationPage = () => {
   );
 };
 
-export default ConversationPage;
+export default CodeGenerationPage;
