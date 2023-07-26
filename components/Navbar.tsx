@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
 import { FC } from "react";
-import { UserButton } from '@clerk/nextjs'
+import { UserButton } from "@clerk/nextjs";
 import MobileSidebar from "./mobile-sidebar";
 
 interface NavbarProps {
-  apiLimitCount
-:number}
+  apiLimitCount: number;
+}
 
 const Navbar: FC<NavbarProps> = ({ apiLimitCount }) => {
   return (

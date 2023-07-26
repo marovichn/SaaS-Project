@@ -4,12 +4,14 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useEffect, useState } from "react";
 import { Zap } from "lucide-react";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 export const FreeCounter = ({
   apiLimitCount = 0,
 }: {
   apiLimitCount: number;
 }) => {
+  const proModal =useProModal();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -22,26 +24,25 @@ export const FreeCounter = ({
 
   return (
     <div className='px-3'>
-      <Card className='bg-white/10 border-0'>
+      <Card className='bg-white/10 border-0  border-white'>
         <CardContent className='py-6'>
           <div className='text-center text-sm text-white mb-4 space-y-2'>
-            <p>
+            <p className="font-bold mb-4">
               {apiLimitCount} / {MAX_FREE_COUNT} Free Generations
             </p>
             <Progress
-              className='h-3'
+              className='h-4 border border-white'
               value={(apiLimitCount / MAX_FREE_COUNT) * 100}
             />
           </div>
           <Button
-            onClick={() => {}}
-            variant='default'
-            className='w-full bg-slate-100 text-black hover:bg-sky-500 group transition font-bold hover:text-white text-md'
+            onClick={() => proModal.onOpen()}
+            variant='premium'
+            className='w-full text-white group transition font-bold text-md flex justify-between mt-4'
           >
+        
             Upgrade
-            <Zap
-              className='w-4 h-4 ml-2 fill-black group-hover:fill-yellow-300 group-hover:text-yellow-500'
-            />
+            <Zap className='w-5 h-5 ml-2 fill-white text-white' />
           </Button>
         </CardContent>
       </Card>

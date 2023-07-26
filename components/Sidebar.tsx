@@ -92,7 +92,10 @@ const Sidebar: FC<SidebarProps> = ({apiLimitCount}) => {
                 <Link
                   href={route.href}
                   key={route.href}
-                  className='flex text-sm group p-3 w-full justify-start font-medium cursor-pointer border border-transparent  hover:bg-white/10 rounded-lg transition'
+                  className={cn(
+                    "flex text-sm group p-3 w-full justify-start font-medium cursor-pointer border border-transparent  hover:bg-white/10 rounded-lg transition",
+                    pathname === route.href ? "bg-white/10 " : "text-white"
+                  )}
                 >
                   <div className='flex items-center flex-1 p-2'>
                     <route.icon
