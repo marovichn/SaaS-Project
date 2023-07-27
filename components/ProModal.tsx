@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -15,6 +15,7 @@ import { Check, Code, ImageIcon, MessageSquare, Music, VideoIcon, Zap } from "lu
 import { Card } from "./ui/card";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
+import axios from "axios";
 
 interface ProModalProps {}
 
@@ -58,6 +59,19 @@ const tools = [
 
 const ProModal: FC<ProModalProps> = ({}) => {
   const proModal = useProModal();
+  const [loading, setLoading]= useState<boolean>(false);
+
+  const onSubscribe = async()=>{
+    try{
+      setLoading(true);
+      const response = await axios.get("/api/stripe");
+      window.location.href= response.data.url
+    }catch(err){
+      console.log("client error");
+    }finally{
+      setLoading(false);
+    }
+  }
 
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
@@ -89,7 +103,7 @@ const ProModal: FC<ProModalProps> = ({}) => {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button size="lg" variant="premium" className="w-full flex justify-center"><span className="text-lg font-bold">Upgrade now</span><Zap className="w-4 h-4 fill-white ml-2"/></Button>
+          <Button disabled={loading} onClick={onSubscribe} size="lg" variant="premium" className="w-full flex justify-center"><span className="text-lg font-bold">Upgrade now</span><Zap className="w-4 h-4 fill-white ml-2"/></Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

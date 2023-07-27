@@ -16,9 +16,11 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FreeCounter } from "./FreeCounter";
+import CurrentPlan from "./CurrentPlan";
 
 interface SidebarProps {
-  apiLimitCount: number
+  apiLimitCount: number;
+  isPro: boolean
 }
 
 const routes = [
@@ -66,7 +68,7 @@ const routes = [
   },
 ];
 
-const Sidebar: FC<SidebarProps> = ({apiLimitCount}) => {
+const Sidebar: FC<SidebarProps> = ({ apiLimitCount, isPro }) => {
   const pathname = usePathname();
   return (
     <div className='space-y-4 py-4 flex flex-col h-full bg-black text-white'>
@@ -133,7 +135,7 @@ const Sidebar: FC<SidebarProps> = ({apiLimitCount}) => {
           })}
         </div>
       </div>
-      <FreeCounter apiLimitCount={apiLimitCount}/>
+      {isPro ? <CurrentPlan isPro={isPro} /> : <FreeCounter apiLimitCount={apiLimitCount} />}
     </div>
   );
 };
