@@ -22,7 +22,7 @@ const SettingsPage: FC<SettingsProps> = async ({}) => {
         bgColor='bg-gray-700/10'
       />
       <div className='px-4 lg:px-8 space-y-4'>
-        <div className='text-muted-foreground text-sm'>
+        <div className='text-muted-foreground text-sm -ml-3'>
           <CurrentPlan isPro={isPro} />
           <SubscriptionButton isPro={isPro}/>
         </div>

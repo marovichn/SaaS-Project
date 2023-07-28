@@ -18,9 +18,9 @@ const CurrentPlan: FC<CurrentPlanProps> = ({ isPro }) => {
           onClick={() => {
             setAnimation(true);
             runFireworks();
-            setTimeout(()=>{
-                setAnimation(false);
-            },5000)
+            setTimeout(() => {
+              setAnimation(false);
+            }, 5000);
           }}
           className='p-8 text-lg font-bold shadow-lg shadow-black/20 mx-3 py-10 transition'
           variant='premium'
@@ -29,7 +29,7 @@ const CurrentPlan: FC<CurrentPlanProps> = ({ isPro }) => {
           You are currently on a PRO plan.
         </Button>
       ) : (
-        <div className="ml-3">You are currently on a free trial.</div>
+        <div className='ml-3'>You are currently on a free trial.</div>
       )}
     </>
   );

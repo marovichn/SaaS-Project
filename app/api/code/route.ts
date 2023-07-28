@@ -1,4 +1,5 @@
 import { checkApiLimit, increaseApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from "openai";
@@ -9,10 +10,11 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const instructionMessage: ChatCompletionRequestMessage={
-  role:"system",
-  content:"You are a code generator. You must answer only in markdown code snippets. Use code comments for explanations."
-}
+const instructionMessage: ChatCompletionRequestMessage = {
+  role: "system",
+  content:
+    "You are a code generator. You must answer only in markdown code snippets. Use code comments for explanations.",
+};
 
 export async function POST(req: Request) {
   try {
@@ -32,8 +34,9 @@ export async function POST(req: Request) {
       return new NextResponse("Messages are required", { status: 400 });
     }
     const freeTrial = await checkApiLimit();
+    const isPro = await checkSubscription();
 
-    if (!freeTrial) {
+    if (!freeTrial && !isPro) {
       return new NextResponse("Free trial expired", { status: 403 });
     }
 
@@ -42,7 +45,9 @@ export async function POST(req: Request) {
       messages: [instructionMessage, ...messages],
     });
 
-    await increaseApiLimit();
+    if (!isPro) {
+      await increaseApiLimit();
+    }
 
     return NextResponse.json(response.data.choices[0].message);
   } catch (err) {
