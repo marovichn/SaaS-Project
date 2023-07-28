@@ -71,7 +71,7 @@ const routes = [
 const Sidebar: FC<SidebarProps> = ({ apiLimitCount, isPro }) => {
   const pathname = usePathname();
   return (
-    <div className='shadow-lg shadow-black space-y-4 py-4 flex flex-col h-full bg-black text-white'>
+    <div className='shadow-lg shadow-black space-y-4 py-4 flex flex-col h-full bg-black text-white rounded-r-2xl'>
       <div className='px-3 py-2 flex-1 pt-4'>
         <Link href='/dashboard' className='flex items-center pl-3 mb-14'>
           <div className='relative w-14 h-14 mr-4'>
@@ -135,7 +135,11 @@ const Sidebar: FC<SidebarProps> = ({ apiLimitCount, isPro }) => {
           })}
         </div>
       </div>
-      {isPro ? <CurrentPlan isPro={isPro} /> : <FreeCounter apiLimitCount={apiLimitCount} />}
+      {isPro ? (
+        <CurrentPlan isPro={isPro} />
+      ) : (
+        <FreeCounter apiLimitCount={apiLimitCount} />
+      )}
     </div>
   );
 };

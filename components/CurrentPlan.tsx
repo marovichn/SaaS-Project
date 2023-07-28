@@ -29,7 +29,7 @@ const CurrentPlan: FC<CurrentPlanProps> = ({ isPro }) => {
           You are currently on a PRO plan.
         </Button>
       ) : (
-        <div>Ypu are currently on a free trial.</div>
+        <div className="ml-3">You are currently on a free trial.</div>
       )}
     </>
   );
