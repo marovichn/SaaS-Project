@@ -22,7 +22,7 @@ const CurrentPlan: FC<CurrentPlanProps> = ({ isPro }) => {
                 setAnimation(false);
             },5000)
           }}
-          className='p-8 text-lg font-bold shadow-lg shadow-black/20 mx-3 py-10'
+          className='p-8 text-lg font-bold shadow-lg shadow-black/20 mx-3 py-10 transition'
           variant='premium'
           disabled={animation}
         >

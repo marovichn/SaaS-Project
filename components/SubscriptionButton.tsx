@@ -25,7 +25,7 @@ const SubscriptionButton: FC<SubscriptionButtonProps> = ({ isPro }) => {
   };
 
   return (
-    <Button disabled={loading} variant={isPro ? "default" : "premium"} onClick={onClick}>
+    <Button className="mx-3 my-3 p-6" disabled={loading} variant={isPro ? "default" : "premium"} onClick={onClick}>
       {isPro ? "Manage subscription" : "Upgrade Now"}{" "}
       {!isPro && <Zap className='h-8 w-8 text-white fill-white' />}
     </Button>

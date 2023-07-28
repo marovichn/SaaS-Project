@@ -1,5 +1,6 @@
 import CurrentPlan from "@/components/CurrentPlan";
 import Heading from "@/components/Heading";
+import SubscriptionButton from "@/components/SubscriptionButton";
 import { Button } from "@/components/ui/button";
 import { checkSubscription } from "@/lib/subscription";
 import { runFireworks } from "@/lib/utils";
@@ -23,6 +24,7 @@ const SettingsPage: FC<SettingsProps> = async ({}) => {
       <div className='px-4 lg:px-8 space-y-4'>
         <div className='text-muted-foreground text-sm'>
           <CurrentPlan isPro={isPro} />
+          <SubscriptionButton isPro={isPro}/>
         </div>
       </div>
     </div>

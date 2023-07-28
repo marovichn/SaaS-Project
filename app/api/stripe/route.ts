@@ -11,6 +11,7 @@ export async function GET() {
   try {
     const { userId } = auth();
     const user = await currentUser();
+    console.log("USER_ID: ", userId, "USER: ", user);
 
     if (!userId || !user) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -19,6 +20,8 @@ export async function GET() {
     const userSubscription = await prismadb.userSubscription.findUnique({
       where: { userId },
     });
+
+    console.log("USER_SUB: ", userSubscription);
 
     if (userSubscription && userSubscription.stripeCustomerId) {
       const stripeSession = await stripe.billingPortal.sessions.create({
@@ -53,6 +56,8 @@ export async function GET() {
         userId,
       },
     });
+
+    console.log("USER_STRIPE_SESS: ", stripeSession);
 
     return new NextResponse(JSON.stringify({ url: stripeSession.url }));
   } catch (err) {
