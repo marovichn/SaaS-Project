@@ -4,6 +4,8 @@ import { FC, useState } from "react";
 import { Button } from "./ui/button";
 import { Zap } from "lucide-react";
 import axios from "axios";
+import { toast } from "react-hot-toast";
+import { cn } from "@/lib/utils";
 
 interface SubscriptionButtonProps {
   isPro: boolean;
@@ -18,7 +20,7 @@ const SubscriptionButton: FC<SubscriptionButtonProps> = ({ isPro }) => {
 
       window.location.href = response.data.url;
     } catch (err: any) {
-      console.log(err);
+        toast.error("Something went wrong")
     } finally {
       setLoading(false);
     }
@@ -26,7 +28,7 @@ const SubscriptionButton: FC<SubscriptionButtonProps> = ({ isPro }) => {
 
   return (
     <Button
-      className='mx-3 my-3 p-6'
+      className={cn('mx-3 my-3 p-6', isPro ? "" : "font-bold text-lg")}
       disabled={loading}
       variant={isPro ? "default" : "premium"}
       onClick={onClick}

@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import { useProModal } from "@/hooks/use-pro-modal";
+import { toast } from "react-hot-toast";
 
 const MusicPage = () => {
   const router = useRouter();
@@ -42,6 +43,8 @@ const MusicPage = () => {
     } catch (err: any) {
        if (err.response?.status === 403) {
          proModal.onOpen();
+       } else {
+         toast.error("AI is busy or something went wrong");
        }
     } finally {
       router.refresh();

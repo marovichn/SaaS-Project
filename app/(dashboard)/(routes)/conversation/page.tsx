@@ -19,6 +19,7 @@ import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/UserAvatar";
 import BotAvatar from "@/components/BotAvatar";
 import { useProModal } from "@/hooks/use-pro-modal";
+import { toast } from "react-hot-toast";
 
 const ConversationPage = () => {
   const router = useRouter();
@@ -54,6 +55,8 @@ const ConversationPage = () => {
       
       if (err.response?.status === 403) {
         proModal.onOpen();
+      }else{
+        toast.error("AI is busy or something went wrong")
       }
     } finally {
       router.refresh();

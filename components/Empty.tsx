@@ -33,7 +33,7 @@ var indents = tmp.map(function (i) {
       <main className='relative w-full flex items-center justify-center mb-10 '>
         <Image alt='Empty' width={900} height={900} src='/assets/empty1.png' className="z-[9999]"/>
       </main>
-      <p className="text-lg text-white text-center">
+      <p className="text-lg text-white text-center min-[0px]:max-sm:text-sm">
         {label}...
       </p>
     </div>
