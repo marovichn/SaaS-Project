@@ -10,14 +10,15 @@ export async function POST(req: Request) {
   const signature = headers().get("Stripe-Signature") as string;
 
   let event: Stripe.Event;
+
   try {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
-  } catch (err: any) {
-    return new NextResponse(`Webhook Error: ${err?.message}`, { status: 400 });
+  } catch (error: any) {
+    return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 });
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
@@ -28,18 +29,18 @@ export async function POST(req: Request) {
     );
 
     if (!session?.metadata?.userId) {
-      return new NextResponse("User Id required", { status: 400 });
+      return new NextResponse("User id is required", { status: 400 });
     }
 
     await prismadb.userSubscription.create({
       data: {
         userId: session?.metadata?.userId,
         stripeSubscriptionId: subscription.id,
+        stripeCustomerId: subscription.customer as string,
+        stripePriceId: subscription.items.data[0].price.id,
         stripeCurrentPeriodEnd: new Date(
           subscription.current_period_end * 1000
         ),
-        stripeCustomerId: subscription.customer as string,
-        stripePriceId: subscription.items.data[0].price.id,
       },
     });
   }
@@ -51,12 +52,14 @@ export async function POST(req: Request) {
 
     await prismadb.userSubscription.update({
       where: {
-        stripeSubscriptionId: subscription.id as string,
+        stripeSubscriptionId: subscription.id,
       },
-      data:{
+      data: {
         stripePriceId: subscription.items.data[0].price.id,
-        stripeCurrentPeriodEnd: new Date(subscription.current_period_end * 1000)
-      }
+        stripeCurrentPeriodEnd: new Date(
+          subscription.current_period_end * 1000
+        ),
+      },
     });
   }
 
