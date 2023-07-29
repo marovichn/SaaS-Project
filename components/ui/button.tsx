@@ -22,7 +22,7 @@ const buttonVariants = cva(
         golden: "bg-gradient-to-r from-yellow-100 via-yellow-300 to-yellow-500",
         blueSteel: "bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800",
         gunmetal:
-          "bg-gradient-to-r from-gray-200 via-emerald-300 to-emerald-500",
+          "bg-gradient-to-r from-gray-400 via-gray-600 to-gray-900",
         iconBased:
           "bg-gradient-to-r from-sky-300 via-pink-500 to-emerald-500",
       },
