@@ -38,7 +38,7 @@ const testimonials = [
 
 export const LandingContent = () => {
   return (
-    <div className='px-10 pb-20'>
+    <div className='px-10 pb-20 pt-10'>
       <h2 className='text-center text-4xl text-white font-extrabold mb-14'>
         Testimonials
       </h2>

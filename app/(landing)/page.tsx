@@ -1,13 +1,14 @@
-import {LandingContent} from "@/components/LandingContent";
-import {LandingHero} from "@/components/LandingHero";
-import {LandingNavbar} from "@/components/LandingNavbar";
+import { LandingContent } from "@/components/LandingContent";
+import { LandingHero } from "@/components/LandingHero";
+import { LandingNavbar } from "@/components/LandingNavbar";
 
 export default function Home() {
+  
   return (
-    <div className='h-full '>
+    <main>
       <LandingNavbar />
       <LandingHero />
       <LandingContent />
-    </div>
+    </main>
   );
 }
