@@ -71,11 +71,16 @@ const routes = [
 const Sidebar: FC<SidebarProps> = ({ apiLimitCount, isPro }) => {
   const pathname = usePathname();
   return (
-    <div className='shadow-lg shadow-black space-y-4 py-4 flex flex-col h-full bg-black text-white rounded-r-2xl'>
+    <div className='shadow-lg shadow-black space-y-4 py-4 flex flex-col h-full bg-black text-white rounded-r-2xl overflow-y-auto sideScroll min-[0px]:max-sm:px-4'>
       <div className='px-3 py-2 flex-1 pt-4'>
         <Link href='/dashboard' className='flex items-center pl-3 mb-14'>
           <div className='relative w-14 h-14 mr-4'>
-            <Image src='/assets/logoR.jpg' alt='logo' width={100} height={100} />
+            <Image
+              src='/assets/logoR.jpg'
+              alt='logo'
+              width={100}
+              height={100}
+            />
           </div>
           <div>
             <Image
