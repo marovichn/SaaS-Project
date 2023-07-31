@@ -18,7 +18,7 @@ export const LandingNavbar = () => {
     <nav className='p-4 bg-transparent flex items-center justify-between'>
       <Link href='/' className='flex items-center'>
         <div className='relative h-10 w-10 mr-4 pt-[3px]'>
-          <Image src='/assets/logo.jpg' width={200} height={160} alt='logo' />
+          <Image src='/assets/logoR.jpg' width={200} height={160} alt='logo' />
         </div>
         <h1
           className={cn(

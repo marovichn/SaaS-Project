@@ -75,7 +75,7 @@ const Sidebar: FC<SidebarProps> = ({ apiLimitCount, isPro }) => {
       <div className='px-3 py-2 flex-1 pt-4'>
         <Link href='/dashboard' className='flex items-center pl-3 mb-14'>
           <div className='relative w-14 h-14 mr-4'>
-            <Image src='/assets/logo.jpg' alt='logo' width={100} height={100} />
+            <Image src='/assets/logoR.jpg' alt='logo' width={100} height={100} />
           </div>
           <div>
             <Image
