@@ -47,9 +47,9 @@ const tools = [
 const page: FC<pageProps> = ({}) => {
   return (
     <div className="mb-10">
-      <div className='mb-8 space-y-4'>
-        <h2 className='text-5xl md:text-4xl font-bold text-center mt-8 px-5'>
-          Explore the power of AI's Brain Pulse
+      <div className="mb-8 space-y-4">
+        <h2 className="text-5xl md:text-4xl font-bold text-center mt-8 px-5">
+          Explore the power of {"AI's"} Brain Pulse
         </h2>
         <p className='text-muted-foreground font-light text-sm md:text-lg text-center px-12 py-6'>
           Discover a new realm of productivity as BrainPulse seamlessly

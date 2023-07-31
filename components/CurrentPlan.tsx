@@ -2,7 +2,8 @@
 
 import { FC, useState } from "react";
 import { Button } from "./ui/button";
-import { runFireworks } from "@/lib/utils";
+import { cn, runFireworks } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 interface CurrentPlanProps {
   isPro: boolean;
@@ -10,19 +11,25 @@ interface CurrentPlanProps {
 
 const CurrentPlan: FC<CurrentPlanProps> = ({ isPro }) => {
   const [animation, setAnimation] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
       {isPro ? (
         <Button
           onClick={() => {
-            setAnimation(true);
-            runFireworks();
-            setTimeout(() => {
-              setAnimation(false);
-            }, 5000);
+            if (pathname === "/settings") {
+              setAnimation(true);
+              runFireworks();
+              setTimeout(() => {
+                setAnimation(false);
+              }, 5000);
+            }
           }}
-          className='p-8 text-lg font-bold shadow-lg shadow-black/20 mx-3 py-10 transition'
+          className={cn(
+            "p-8 text-lg font-bold shadow-lg shadow-black/20 mx-3 py-10 transition",
+            pathname !== "/settings" ? "hover:cursor-default":""
+          )}
           variant='premium'
           disabled={animation}
         >
